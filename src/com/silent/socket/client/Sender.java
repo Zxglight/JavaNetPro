@@ -1,7 +1,14 @@
 package com.silent.socket.client;
 
+import static com.silent.socket.SocketConstant.NATURAL_STOP;
+import static com.silent.socket.SocketConstant.OUTPUT_STOP;
+import static com.silent.socket.SocketConstant.SOCKET_STOP;
+import static com.silent.socket.SocketConstant.SUDDEN_STOP;
+import static com.silent.socket.SocketUtils.getWriter;
+import static java.lang.System.exit;
+import static java.lang.System.out;
+
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -18,26 +25,6 @@ public class Sender {
      */
     private static int stopWay = 1;
 
-    /**
-     * 自然结束
-     */
-    private final int NATURAL_STOP = 1;
-
-    /**
-     * 突然中止程序
-     */
-    private final int SUDDEN_STOP = 2;
-
-    /**
-     * 关闭socket,再结束程序
-     */
-    private final int SOCKET_STOP = 3;
-
-    /**
-     * 关闭输出流,再结束程序
-     */
-    private final int OUTPUT_STOP = 4;
-
     private String host = "localhost";
 
     private int port = 8000;
@@ -52,29 +39,26 @@ public class Sender {
         new Sender().send();
     }
 
-    PrintWriter getWriter(Socket socket) throws IOException {
-        return new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-    }
-
     public void send() throws Exception {
+        socket.setTcpNoDelay(true);
         PrintWriter writer = getWriter(socket);
         for (int i = 0; i < 20; i++) {
             String msg = "hello_" + i + "\r\n";
             writer.write(msg);
-            System.out.println("send:" + msg);
+            out.println("send:" + msg);
             Thread.sleep(500);
             if (i == 15) {
                 switch (stopWay) {
                     case SUDDEN_STOP:
-                        System.out.println("突然中止连接!");
-                        System.exit(0);
+                        out.println("突然中止连接!");
+                        exit(0);
                         break;
                     case OUTPUT_STOP:
                         socket.shutdownOutput();
-                        System.out.println("关闭输出流并中止程序!");
+                        out.println("关闭输出流并中止程序!");
                         break;
                     case SOCKET_STOP:
-                        System.out.println("关闭socket并中止程序!");
+                        out.println("关闭socket并中止程序!");
                     case NATURAL_STOP:
                     default:
                         writer.flush();
