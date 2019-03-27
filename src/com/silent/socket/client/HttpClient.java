@@ -1,8 +1,10 @@
 package com.silent.socket.client;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
@@ -46,14 +48,11 @@ public class HttpClient {
 
         //        接收响应结果
         InputStream socketIn = socket.getInputStream();
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        byte[] buff = new byte[1024];
-        int len = -1;
-        while ((len = socketIn.read(buff)) != -1) {
-            buffer.write(buff, 0, len);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socketIn));
+        String str;
+        while ((str = bufferedReader.readLine()) != null) {
+            System.out.println(str);
         }
-        //        把字节数组转换成字符串
-        System.out.println(new String(buffer.toByteArray()));
         socket.close();
     }
 }
