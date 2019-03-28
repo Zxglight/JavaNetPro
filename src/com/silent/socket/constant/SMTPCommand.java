@@ -40,5 +40,10 @@ public interface SMTPCommand {
      */
     String HELP = "HELP";
 
+    /**
+     * 用户认证
+     */
+    String AUTH_LOGIN = "AUTH LOGIN";
+
 
 }

@@ -29,16 +29,28 @@ public class MailMessage {
     private String content;
 
     /**
+     * 用户名
+     */
+    private String userName;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
      * 邮件内容,包括邮件标题和正文
      */
     private String data;
 
-    public MailMessage(String from, String to, String subject, String content) {
+    public MailMessage(String from, String to, String subject, String content,String userName,String password) {
         this.from = from;
         this.to = to;
         this.subject = subject;
         this.content = content;
         this.data = "Subject:" + subject + "\r\n" + content;
+        this.userName = userName;
+        this.password = password;
     }
 
     public String getFrom() {
@@ -79,5 +91,21 @@ public class MailMessage {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
