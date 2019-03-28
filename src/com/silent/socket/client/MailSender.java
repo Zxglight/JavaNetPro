@@ -3,7 +3,6 @@ package com.silent.socket.client;
 import static com.silent.socket.constant.SMTPCommand.AUTH_LOGIN;
 import static com.silent.socket.constant.SMTPCommand.DATA;
 import static com.silent.socket.constant.SMTPCommand.HELO;
-import static com.silent.socket.constant.SMTPCommand.HELP;
 import static com.silent.socket.constant.SMTPCommand.MAIL_FROM;
 import static com.silent.socket.constant.SMTPCommand.QUIT;
 import static com.silent.socket.constant.SMTPCommand.RCPT_TO;
@@ -33,8 +32,7 @@ public class MailSender {
     private int port = 25;
 
     public static void main(String[] args) {
-        MailMessage msg = new MailMessage("username", "password", "hello", "hi,I'm tom", "username",
-                                          "password");
+        MailMessage msg = new MailMessage("username", "password", "hello", "hi,I'm tom", "username", "password");
         new MailSender().sendMail(msg);
     }
 
@@ -46,8 +44,8 @@ public class MailSender {
             PrintWriter writer = getWriter(socket);
             String username = new BASE64Encoder().encode(message.getUserName().getBytes());
             String password = new BASE64Encoder().encode(message.getPassword().getBytes());
-            out.println("username:"+username);
-            out.println("password:"+password);
+            out.println("username:" + username);
+            out.println("password:" + password);
             //            本地主机名
             String hostName = InetAddress.getLocalHost().getHostAddress();
             //            测试响应数据
