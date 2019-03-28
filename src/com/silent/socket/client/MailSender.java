@@ -31,7 +31,7 @@ public class MailSender {
 
     public static void main(String[] args) {
         MailMessage msg = new MailMessage("my@abc.com", "you@abc.com", "hello", "hi,I'm tom");
-
+        new MailSender().sendMail(msg);
     }
 
     public void sendMail(MailMessage message) {
@@ -42,21 +42,21 @@ public class MailSender {
             PrintWriter writer = getWriter(socket);
             String hostName = InetAddress.getLocalHost().getHostAddress();
             //            测试响应数据
-            out.print(sendAndReceive(null, reader, writer));
+            out.println(sendAndReceive(null, reader, writer));
             //            发送主机名
-            out.print(sendAndReceive(HELO + hostName, reader, writer));
+            out.println(sendAndReceive(HELO + hostName, reader, writer));
             //            发送发件人邮箱
-            out.print(sendAndReceive(MAIL_FROM + ":<" + message.getFrom() + ">", reader, writer));
+            out.println(sendAndReceive(MAIL_FROM + ":<" + message.getFrom() + ">", reader, writer));
             //            发送收件人邮箱
-            out.print(sendAndReceive(RCPT_TO + ":<" + message.getTo() + ">", reader, writer));
+            out.println(sendAndReceive(RCPT_TO + ":<" + message.getTo() + ">", reader, writer));
             //            准备发送邮件内容
-            out.print(sendAndReceive(DATA, reader, writer));
+            out.println(sendAndReceive(DATA, reader, writer));
             //            发送邮件内容
             writer.println(message.getData());
             //            邮件发送完毕
-            out.print(sendAndReceive(".", reader, writer));
+            out.println(sendAndReceive(".", reader, writer));
             //            结束通信
-            out.print(sendAndReceive(QUIT, reader, writer));
+            out.println(sendAndReceive(QUIT, reader, writer));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
