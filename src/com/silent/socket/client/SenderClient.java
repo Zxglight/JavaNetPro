@@ -1,6 +1,6 @@
 package com.silent.socket.client;
 
-import com.silent.socket.SocketUtils;
+import com.silent.socket.util.SocketUtils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;

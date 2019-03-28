@@ -2,7 +2,7 @@ package com.silent.socket.server;
 
 import static java.lang.System.out;
 
-import com.silent.socket.SocketUtils;
+import com.silent.socket.util.SocketUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.ServerSocket;

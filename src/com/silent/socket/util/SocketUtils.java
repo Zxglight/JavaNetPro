@@ -1,4 +1,4 @@
-package com.silent.socket;
+package com.silent.socket.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +20,13 @@ public class SocketUtils {
 
     public static PrintWriter getWriter(Socket socket) throws IOException {
         return new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+    }
+
+    public static String sendAndReceive(String str, BufferedReader reader, PrintWriter writer) throws IOException {
+        if (null != str) {
+            writer.println(str);
+        }
+        return reader.readLine();
     }
 
 }

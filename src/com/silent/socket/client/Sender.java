@@ -1,10 +1,10 @@
 package com.silent.socket.client;
 
-import static com.silent.socket.SocketConstant.NATURAL_STOP;
-import static com.silent.socket.SocketConstant.OUTPUT_STOP;
-import static com.silent.socket.SocketConstant.SOCKET_STOP;
-import static com.silent.socket.SocketConstant.SUDDEN_STOP;
-import static com.silent.socket.SocketUtils.getWriter;
+import static com.silent.socket.constant.SocketConstant.NATURAL_STOP;
+import static com.silent.socket.constant.SocketConstant.OUTPUT_STOP;
+import static com.silent.socket.constant.SocketConstant.SOCKET_STOP;
+import static com.silent.socket.constant.SocketConstant.SUDDEN_STOP;
+import static com.silent.socket.util.SocketUtils.getWriter;
 import static java.lang.System.exit;
 import static java.lang.System.out;
 
