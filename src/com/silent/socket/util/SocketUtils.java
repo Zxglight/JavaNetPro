@@ -17,7 +17,7 @@ import java.nio.charset.Charset;
  */
 public class SocketUtils {
 
-    private static final Charset GBK_CHARSET = Charset.forName("GBK");
+    public static final Charset GBK_CHARSET = Charset.forName("GBK");
 
     public static BufferedReader getReader(Socket socket) throws IOException {
         return new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -95,6 +95,7 @@ public class SocketUtils {
         byteBuffer.limit(byteBuffer.capacity());
         //        把readBuff中的内容拷贝到buffer中 假定buffer的容量足够大 不会出现缓冲区溢出的异常
         byteBuffer.put(readBuff);
+        System.out.println("接收到数据:"+readBuff.toString());
     }
 
 }

@@ -57,6 +57,7 @@ public class EchoServer {
                 //                设置为非阻塞模式
                 socketChannel.configureBlocking(false);
                 ByteBuffer buffer = ByteBuffer.allocate(1024);
+                System.out.println("接收到客户端的连接");
                 synchronized (gate) {
                     selector.wakeup();
                     socketChannel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_WRITE, buffer);
