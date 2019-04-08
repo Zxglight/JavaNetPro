@@ -42,7 +42,7 @@ public class PingClient {
         Printer printer = new Printer();
         connector.start();
         printer.start();
-
+        receiveTarget();
     }
 
     public static void main(String[] args) throws IOException {
